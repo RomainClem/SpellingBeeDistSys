@@ -5,7 +5,7 @@ class WordBonus(IntEnum):
     PANGRAM = 7
 
 
-class MatchStatus(IntEnum):
+class GameStatus(IntEnum):
     INVALID = 0
     WAITING = 1
     IN_PROGRESS = 2
