@@ -1,0 +1,81 @@
+syntax = "proto3";
+// python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. ./protos/spelling_bee_game.proto
+package app;
+
+service SpellingBeeGame{
+    rpc CreateGame(GameRequest) returns (GameResponse) {}
+    rpc RegisterPlayer (RegisterRequest) returns (RegisterResponse) {}
+    rpc FinalizeGame (FinalizeRequest) returns (FinalizeResponse) {}
+    rpc ProcessSuggestion (SuggestionRequest) returns (SuggestionResponse) {}
+    rpc ListGames (ListRequest) returns (ListResponse) {}
+    rpc WatchGame (WatchRequest) returns (stream WatchResponse) {}
+}
+
+
+message GameRequest {
+    string userName = 1;
+    string gameType = 2;
+}
+
+message GameResponse {
+    bytes gameId = 1;
+}
+
+message RegisterRequest {
+    bytes gameId = 1;
+    string userName = 2;
+}
+
+message RegisterResponse {
+    int32 playerIndex = 1;
+}
+
+message FinalizeRequest {
+    bytes gameId = 1;
+}
+
+message FinalizeResponse {
+}
+
+message Word {
+    string word = 1;
+}
+
+message SuggestionRequest {
+    bytes gameId = 1;
+    int32 playerIndex = 2;
+    repeated Word suggestion = 3;
+}
+
+message SuggestionResponse {
+    int32 result = 1;
+    string message = 2;
+}
+
+message ListRequest {
+    int32 result = 1;
+    string message = 2;
+}
+
+message Player {
+    string userName = 1;
+    int32 playerIndex = 2;
+}
+
+message game {
+    repeated Player players = 1;
+}
+
+message ListResponse {
+    repeated game games = 1;
+}
+
+message WatchRequest {
+//  bytes gameId = 1;
+}
+
+message WatchResponse {
+    Player player = 1;
+    repeated Word word = 2;
+    int32 score = 3;
+}
