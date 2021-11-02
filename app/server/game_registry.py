@@ -25,6 +25,7 @@ class GameRegistry:
                     GameRegistry()
         return GameRegistry.__instance
 
+
     def add_game(self, game):
         self.lock.acquire()
         game_id = uuid.uuid4() # Generating unique ID

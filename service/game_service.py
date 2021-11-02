@@ -35,8 +35,8 @@ class GameSuggestionTemplate(ABC):
         if status is False:
             return -1, message
 
-        # result stores which, if any, of the word that stop the game
-        result = self.check_winning_condition(player_index, suggestion)
+        # result stores if the game is over
+        result = self.check_ending_condition(player_index, suggestion)
 
         self.record_statistics(player_index, suggestion, result)
 
@@ -50,7 +50,7 @@ class GameSuggestionTemplate(ABC):
         pass
 
     @abstractmethod
-    def check_winning_condition(self, player_index, suggestion):
+    def check_ending_condition(self, player_index, suggestion):
         """Primitive operation. You HAVE TO override me, I'm a placeholder."""
         pass
 
