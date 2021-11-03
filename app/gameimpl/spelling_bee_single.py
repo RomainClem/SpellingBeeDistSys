@@ -2,6 +2,7 @@ from service.game_service import GameSuggestionTemplate
 from service.game_service import GameManager
 from datatype.enums import GameStatus
 from dao.spelling_bee_dao import SpellingBeeDao
+from datatype.enums import WordBonus
 STARTING_TOTAL = 0
 
 
@@ -30,6 +31,12 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         if not self.dao.check_word(suggestion.word):
             return False, "This is not a valid word."
 
+        if not (set(suggestion.word).issubset(set(self.pangram))):
+            return False, "Only use letters from the pangram."
+
+        if self.letter not in suggestion.word:
+            return False, f"Only must use {self.letter}."
+
         if suggestion.word in self.words:
             return False, "You already made that suggestion."
 
@@ -41,9 +48,15 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         :param suggestion: the word with it's score
         :return: True or False
         """
-        self.score += suggestion.get_score()
+        bonus = 0
+        if suggestion.word > 6:
+            if (len(set(suggestion.word).difference(set(self.pamgram))) == 0):
+                bonus = WordBonus.PANGRAM 
+
+        self.score += suggestion.get_score() + bonus
+
         self.words[suggestion.word] = ""
-        print(f"Adding {self.words} for {suggestion.get_score()} points.")
+        print(f"Adding {self.words} for {suggestion.get_score()+bonus} points.")
 
         if len(self.words) == 30:
             self.game.status = GameStatus.FINISHED
@@ -60,7 +73,8 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
 
     def format_summary(self, player_index, suggestion):
         return f"Last word was {suggestion.word} with a score of {suggestion.get_score()} points." \
-            f"\nYou can suggest {len(self.words) - 30} more words."
+            f"\nYou can suggest {len(self.words) - 30} additional words." \
+            f"Total score = {self.score}, found words {self.words}."
 
 
 class SpellingBeeGameBuilder:

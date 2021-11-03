@@ -1,4 +1,3 @@
-from datatype.enums import WordBonus
 from datetime import datetime
 
 class Suggestion:
@@ -7,7 +6,7 @@ class Suggestion:
         self.score = 1 if len(word) == 4 else len(word)
     
     def get_score(self):
-        return self.score if self.score < 7 else self.score + WordBonus.PANGRAM 
+        return self.score
 
     def to_string(self):
         return self.word + '-' + self.get_score

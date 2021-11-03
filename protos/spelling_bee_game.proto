@@ -18,7 +18,8 @@ message GameRequest {
 }
 
 message GameResponse {
-    bytes gameId = 1;
+    bool result = 1;
+    string message = 2;
 }
 
 message RegisterRequest {

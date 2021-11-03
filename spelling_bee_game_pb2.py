@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x17spelling_bee_game.proto\x12\x03\x61pp\"1\n\x0bGameRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08gameType\x18\x02 \x01(\t\"\x1e\n\x0cGameResponse\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\"3\n\x0fRegisterRequest\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\x12\x10\n\x08userName\x18\x02 \x01(\t\"\'\n\x10RegisterResponse\x12\x13\n\x0bplayerIndex\x18\x01 \x01(\x05\"!\n\x0f\x46inalizeRequest\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\"\x12\n\x10\x46inalizeResponse\"\x14\n\x04Word\x12\x0c\n\x04word\x18\x01 \x01(\t\"W\n\x11SuggestionRequest\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\x12\x13\n\x0bplayerIndex\x18\x02 \x01(\x05\x12\x1d\n\nsuggestion\x18\x03 \x03(\x0b\x32\t.app.Word\"5\n\x12SuggestionResponse\x12\x0e\n\x06result\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\".\n\x0bListRequest\x12\x0e\n\x06result\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\"/\n\x06Player\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x13\n\x0bplayerIndex\x18\x02 \x01(\x05\"$\n\x04game\x12\x1c\n\x07players\x18\x01 \x03(\x0b\x32\x0b.app.Player\"(\n\x0cListResponse\x12\x18\n\x05games\x18\x01 \x03(\x0b\x32\t.app.game\"\x0e\n\x0cWatchRequest\"T\n\rWatchResponse\x12\x1b\n\x06player\x18\x01 \x01(\x0b\x32\x0b.app.Player\x12\x17\n\x04word\x18\x02 \x03(\x0b\x32\t.app.Word\x12\r\n\x05score\x18\x03 \x01(\x05\x32\xfa\x02\n\x0fSpellingBeeGame\x12\x33\n\nCreateGame\x12\x10.app.GameRequest\x1a\x11.app.GameResponse\"\x00\x12?\n\x0eRegisterPlayer\x12\x14.app.RegisterRequest\x1a\x15.app.RegisterResponse\"\x00\x12=\n\x0c\x46inalizeGame\x12\x14.app.FinalizeRequest\x1a\x15.app.FinalizeResponse\"\x00\x12\x46\n\x11ProcessSuggestion\x12\x16.app.SuggestionRequest\x1a\x17.app.SuggestionResponse\"\x00\x12\x32\n\tListGames\x12\x10.app.ListRequest\x1a\x11.app.ListResponse\"\x00\x12\x36\n\tWatchGame\x12\x11.app.WatchRequest\x1a\x12.app.WatchResponse\"\x00\x30\x01\x62\x06proto3'
+  serialized_pb=b'\n\x17spelling_bee_game.proto\x12\x03\x61pp\"1\n\x0bGameRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08gameType\x18\x02 \x01(\t\"/\n\x0cGameResponse\x12\x0e\n\x06result\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"3\n\x0fRegisterRequest\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\x12\x10\n\x08userName\x18\x02 \x01(\t\"\'\n\x10RegisterResponse\x12\x13\n\x0bplayerIndex\x18\x01 \x01(\x05\"!\n\x0f\x46inalizeRequest\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\"\x12\n\x10\x46inalizeResponse\"\x14\n\x04Word\x12\x0c\n\x04word\x18\x01 \x01(\t\"W\n\x11SuggestionRequest\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\x12\x13\n\x0bplayerIndex\x18\x02 \x01(\x05\x12\x1d\n\nsuggestion\x18\x03 \x03(\x0b\x32\t.app.Word\"5\n\x12SuggestionResponse\x12\x0e\n\x06result\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\".\n\x0bListRequest\x12\x0e\n\x06result\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\"/\n\x06Player\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x13\n\x0bplayerIndex\x18\x02 \x01(\x05\"$\n\x04game\x12\x1c\n\x07players\x18\x01 \x03(\x0b\x32\x0b.app.Player\"(\n\x0cListResponse\x12\x18\n\x05games\x18\x01 \x03(\x0b\x32\t.app.game\"\x0e\n\x0cWatchRequest\"T\n\rWatchResponse\x12\x1b\n\x06player\x18\x01 \x01(\x0b\x32\x0b.app.Player\x12\x17\n\x04word\x18\x02 \x03(\x0b\x32\t.app.Word\x12\r\n\x05score\x18\x03 \x01(\x05\x32\xfa\x02\n\x0fSpellingBeeGame\x12\x33\n\nCreateGame\x12\x10.app.GameRequest\x1a\x11.app.GameResponse\"\x00\x12?\n\x0eRegisterPlayer\x12\x14.app.RegisterRequest\x1a\x15.app.RegisterResponse\"\x00\x12=\n\x0c\x46inalizeGame\x12\x14.app.FinalizeRequest\x1a\x15.app.FinalizeResponse\"\x00\x12\x46\n\x11ProcessSuggestion\x12\x16.app.SuggestionRequest\x1a\x17.app.SuggestionResponse\"\x00\x12\x32\n\tListGames\x12\x10.app.ListRequest\x1a\x11.app.ListResponse\"\x00\x12\x36\n\tWatchGame\x12\x11.app.WatchRequest\x1a\x12.app.WatchResponse\"\x00\x30\x01\x62\x06proto3'
 )
 
 
@@ -73,9 +73,16 @@ _GAMERESPONSE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='gameId', full_name='app.GameResponse.gameId', index=0,
-      number=1, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"",
+      name='result', full_name='app.GameResponse.result', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='message', full_name='app.GameResponse.message', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -92,7 +99,7 @@ _GAMERESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=83,
-  serialized_end=113,
+  serialized_end=130,
 )
 
 
@@ -130,8 +137,8 @@ _REGISTERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=115,
-  serialized_end=166,
+  serialized_start=132,
+  serialized_end=183,
 )
 
 
@@ -162,8 +169,8 @@ _REGISTERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=168,
-  serialized_end=207,
+  serialized_start=185,
+  serialized_end=224,
 )
 
 
@@ -194,8 +201,8 @@ _FINALIZEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=209,
-  serialized_end=242,
+  serialized_start=226,
+  serialized_end=259,
 )
 
 
@@ -219,8 +226,8 @@ _FINALIZERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=244,
-  serialized_end=262,
+  serialized_start=261,
+  serialized_end=279,
 )
 
 
@@ -251,8 +258,8 @@ _WORD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=264,
-  serialized_end=284,
+  serialized_start=281,
+  serialized_end=301,
 )
 
 
@@ -297,8 +304,8 @@ _SUGGESTIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=286,
-  serialized_end=373,
+  serialized_start=303,
+  serialized_end=390,
 )
 
 
@@ -336,8 +343,8 @@ _SUGGESTIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=375,
-  serialized_end=428,
+  serialized_start=392,
+  serialized_end=445,
 )
 
 
@@ -375,8 +382,8 @@ _LISTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=430,
-  serialized_end=476,
+  serialized_start=447,
+  serialized_end=493,
 )
 
 
@@ -414,8 +421,8 @@ _PLAYER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=478,
-  serialized_end=525,
+  serialized_start=495,
+  serialized_end=542,
 )
 
 
@@ -446,8 +453,8 @@ _GAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=527,
-  serialized_end=563,
+  serialized_start=544,
+  serialized_end=580,
 )
 
 
@@ -478,8 +485,8 @@ _LISTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=565,
-  serialized_end=605,
+  serialized_start=582,
+  serialized_end=622,
 )
 
 
@@ -503,8 +510,8 @@ _WATCHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=607,
-  serialized_end=621,
+  serialized_start=624,
+  serialized_end=638,
 )
 
 
@@ -549,8 +556,8 @@ _WATCHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=623,
-  serialized_end=707,
+  serialized_start=640,
+  serialized_end=724,
 )
 
 _SUGGESTIONREQUEST.fields_by_name['suggestion'].message_type = _WORD
@@ -689,8 +696,8 @@ _SPELLINGBEEGAME = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=710,
-  serialized_end=1088,
+  serialized_start=727,
+  serialized_end=1105,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateGame',

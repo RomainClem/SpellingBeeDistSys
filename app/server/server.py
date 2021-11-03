@@ -23,7 +23,7 @@ class SpellingBeeServer(SpellingBeeGameServicer):
             "Spelling Bee Single player", spelling_bee_single.SpellingBeeGameBuilder())
         self.registry = GameRegistry.get_instance()
 
-    def ProcessSuggestion(self, request):
+    def ProcessSuggestion(self, request, context):
         print("In 'visit' for: " + str(request.gameId))
         my_suggestion = suggestion.Suggestion(request.suggestion)
         game = self.registry.get_game(request.gameId)
@@ -31,19 +31,19 @@ class SpellingBeeServer(SpellingBeeGameServicer):
             request.playerIndex, my_suggestion)
         return GameResponse(result=result, message=response)
 
-    def RegisterPlayer(self, request):
+    def RegisterPlayer(self, request), context:
         print("in register player")
         game = self.registry.get_game(request.gameId)
         player_index = game.game.register_player(request.userName)
         print(game.game.players)
         return RegisterResponse(player_index=player_index)
 
-    def FinalizeGame(self, request):
+    def FinalizeGame(self, request, context):
         print("in finalize")
         self.registry.get_game(request.gameId).finalize_setup()
         return FinalizeResponse()
 
-    def CreateGame(self, request):
+    def CreateGame(self, request, context):
         """
         This is stateless, i.e. no dedicated session for the game; must return the unique id of the game and this
         must be sent as a paramater with all requests. Like sessions on a multi-threaded webserver.
