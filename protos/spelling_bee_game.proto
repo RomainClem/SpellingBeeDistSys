@@ -18,8 +18,7 @@ message GameRequest {
 }
 
 message GameResponse {
-    bool result = 1;
-    string message = 2;
+    bytes gameId = 1;
 }
 
 message RegisterRequest {
@@ -36,6 +35,7 @@ message FinalizeRequest {
 }
 
 message FinalizeResponse {
+    string pangram = 1;
 }
 
 message Word {
@@ -45,11 +45,11 @@ message Word {
 message SuggestionRequest {
     bytes gameId = 1;
     int32 playerIndex = 2;
-    repeated Word suggestion = 3;
+    Word suggestion = 3;
 }
 
 message SuggestionResponse {
-    int32 result = 1;
+    bool result = 1;
     string message = 2;
 }
 

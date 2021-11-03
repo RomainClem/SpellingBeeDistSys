@@ -5,11 +5,11 @@ from google.protobuf import message
 
 import grpc
 
-from app.gameimpl import spelling_bee_single
+import gameimpl.spelling_bee_single as spelling_bee_single
 from spelling_bee_game_pb2 import GameResponse, RegisterResponse, FinalizeResponse, SuggestionResponse, WatchRequest, WatchResponse, Player, Word
 
 from spelling_bee_game_pb2_grpc import SpellingBeeGameServicer, add_SpellingBeeGameServicer_to_server
-from app.server.game_registry import GameRegistry
+from game_registry import GameRegistry
 from domain import spelling_bee_game, suggestion
 from pattern import object_factory
 
@@ -29,9 +29,9 @@ class SpellingBeeServer(SpellingBeeGameServicer):
         game = self.registry.get_game(request.gameId)
         result, response = game.process_suggestion(
             request.playerIndex, my_suggestion)
-        return GameResponse(result=result, message=response)
+        return SuggestionResponse(result=result, message=response)
 
-    def RegisterPlayer(self, request), context:
+    def RegisterPlayer(self, request, context):
         print("in register player")
         game = self.registry.get_game(request.gameId)
         player_index = game.game.register_player(request.userName)
@@ -40,8 +40,10 @@ class SpellingBeeServer(SpellingBeeGameServicer):
 
     def FinalizeGame(self, request, context):
         print("in finalize")
-        self.registry.get_game(request.gameId).finalize_setup()
-        return FinalizeResponse()
+        game = self.registry.get_game(request.gameId)
+        game.finalize_setup()
+        myPangram = game.retrieve_pangram()
+        return FinalizeResponse(pangram=myPangram)
 
     def CreateGame(self, request, context):
         """

@@ -1,9 +1,9 @@
 from datetime import datetime
 
 class Suggestion:
-    def __init__(self, word):
-        self.word = word
-        self.score = 1 if len(word) == 4 else len(word)
+    def __init__(self, Word):
+        self.word = Word.word
+        self.score = 1 if len(Word.word) == 4 else len(Word.word)
     
     def get_score(self):
         return self.score

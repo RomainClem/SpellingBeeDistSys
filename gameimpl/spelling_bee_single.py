@@ -17,9 +17,15 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         self.words = {}
 
     def post_init(self):
-        self.dao = SpellingBeeDao.get_instance()
+        self.dao = SpellingBeeDao()
+        self.dao.post_init()
         self.pangram, self.letter = self.dao.get_pangram()
         self.game.status = GameStatus.IN_PROGRESS
+    
+    def get_pangram(self):
+        unique_chars = list(set(self.pangram))
+        unique_chars[unique_chars.index(self.letter)] = f"[{self.letter}]"
+        return "".join(unique_chars)
 
     def validate_suggestion(self, player_index, suggestion):
         if self.game.status is not GameStatus.IN_PROGRESS:
@@ -49,7 +55,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         :return: True or False
         """
         bonus = 0
-        if suggestion.word > 6:
+        if len(suggestion.word) > 6:
             if (len(set(suggestion.word).difference(set(self.pamgram))) == 0):
                 bonus = WordBonus.PANGRAM 
 
@@ -73,7 +79,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
 
     def format_summary(self, player_index, suggestion):
         return f"Last word was {suggestion.word} with a score of {suggestion.get_score()} points." \
-            f"\nYou can suggest {len(self.words) - 30} additional words." \
+            f"\nYou can suggest {30 - len(self.words)} additional words." \
             f"Total score = {self.score}, found words {self.words}."
 
 
