@@ -11,7 +11,8 @@ def run():
     name = input("Input username => ")
     game = stub.CreateGame(spelling_bee_game_pb2.GameRequest(userName=name, gameType="Spelling Bee Single player")).gameId
     pangram = stub.FinalizeGame(spelling_bee_game_pb2.FinalizeRequest(gameId=game)).pangram
-
+    print(f"Welcome {name}, let's have a game of single player spelling bee!\n" \
+            f"You can guess up to 30 words. Have a good game :)")
     while True:
         print(pangram)
         word_input = input("suggestion => ")

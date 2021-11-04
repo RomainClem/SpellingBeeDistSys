@@ -1,6 +1,5 @@
 import json
 import threading
-import time
 from random import choice
 
 
@@ -23,17 +22,14 @@ class SpellingBeeDao:
         super().__init__()
         self.lock = threading.Lock()
         self.wordDictionnary = {}
-        self.pangramsDictionnary = {}
-
-    def post_init(self):
-        with open('./assets/words_dictionary.json') as f:
+        with open('../assets/words_dictionary.json') as f:
             self.wordDictionnary = json.load(f)
-        with open('./assets/pangrams.json') as f:
+        self.pangramsDictionnary = {}
+        with open('../assets/pangrams.json') as f:
             self.pangramsDictionnary = json.load(f)
 
     def get_pangram(self):
         self.lock.acquire()
-        time.sleep(1)
         random_pangram = choice(list(self.pangramsDictionnary.keys()))
         random_letter = choice(list(set(random_pangram)))
         self.lock.release()
@@ -41,7 +37,6 @@ class SpellingBeeDao:
 
     def check_word(self, word):
         self.lock.acquire()
-        time.sleep(1)
         res = True if word in self.wordDictionnary else False
         self.lock.release()
         return res

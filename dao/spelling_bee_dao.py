@@ -10,9 +10,9 @@ class SpellingBeeDao:
         self.pangramsDictionnary = {}
 
     def post_init(self):
-        with open('assets/words_dictionary.json') as f:
+        with open('../assets/words_dictionary.json') as f:
             self.wordDictionnary = json.load(f)
-        with open('assets/pangrams.json') as f:
+        with open('../assets/pangrams.json') as f:
             self.pangramsDictionnary = json.load(f)
         
     def get_pangram(self):

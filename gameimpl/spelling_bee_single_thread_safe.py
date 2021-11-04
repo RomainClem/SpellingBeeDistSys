@@ -1,7 +1,7 @@
 from service.game_service import GameSuggestionTemplate
 from service.game_service import GameManager
 from datatype.enums import GameStatus
-from dao.spelling_bee_dao import SpellingBeeDao
+from dao.spelling_bee_dao_thread_safe import SpellingBeeDao
 from datatype.enums import WordBonus
 STARTING_TOTAL = 0
 
@@ -17,8 +17,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         self.words = {}
 
     def post_init(self):
-        self.dao = SpellingBeeDao()
-        self.dao.post_init()
+        self.dao = SpellingBeeDao().get_instance()
         self.pangram, self.letter = self.dao.get_pangram()
         self.game.status = GameStatus.IN_PROGRESS
     
