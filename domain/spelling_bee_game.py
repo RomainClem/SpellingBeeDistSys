@@ -9,6 +9,7 @@ class SpellingBeeGame:
         self.winning_player_index = -1
 
     def register_player(self, username):
+        print(self.players)
         if username not in self.players:
             index = len(self.players)
             self.players.append(username)
@@ -16,3 +17,6 @@ class SpellingBeeGame:
             return index
         else:
             return -1
+
+
+# Remove unnecessary information here. Either store something or do a minimum.

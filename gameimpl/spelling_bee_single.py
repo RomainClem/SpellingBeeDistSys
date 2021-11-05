@@ -1,7 +1,7 @@
 from service.game_service import GameSuggestionTemplate
 from service.game_service import GameManager
 from datatype.enums import GameStatus
-from dao.spelling_bee_dao import SpellingBeeDao
+from dao.spelling_bee_dao_singleton import SpellingBeeDao
 from datatype.enums import WordBonus
 
 class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
@@ -15,8 +15,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         self.words = {}
 
     def post_init(self):
-        self.dao = SpellingBeeDao()
-        self.dao.post_init()
+        self.dao = SpellingBeeDao.get_instance()
         self.pangram, self.letter = self.dao.get_pangram()
         self.game.status = GameStatus.IN_PROGRESS
     
@@ -39,7 +38,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
             return False, "Only use letters from the pangram."
 
         if self.letter not in suggestion.word:
-            return False, f"Only must use {self.letter}."
+            return False, f"You must use {self.letter} in your suggestion."
 
         if suggestion.word in self.words:
             return False, "You already made that suggestion."
@@ -78,7 +77,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
     def format_summary(self, player_index, suggestion):
         return f"Last word was {suggestion.word} with a score of {suggestion.get_score()} points." \
             f"\nYou can suggest {30 - len(self.words)} additional words." \
-            f"\nTotal score = {self.score}, found words {self.words.keys()}."
+            f"\nTotal score = {self.score}, found words {list(self.words)}."
 
 
 class SpellingBeeGameBuilder:

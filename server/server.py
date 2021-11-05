@@ -6,7 +6,7 @@ from google.protobuf import message
 import grpc
 
 import gameimpl.spelling_bee_single as spelling_bee_single
-from spelling_bee_game_pb2 import GameResponse, RegisterResponse, FinalizeResponse, SuggestionResponse, WatchRequest, WatchResponse, Player, Word
+from spelling_bee_game_pb2 import GameResponse, FinalizeResponse, SuggestionResponse, Word
 
 from spelling_bee_game_pb2_grpc import SpellingBeeGameServicer, add_SpellingBeeGameServicer_to_server
 from game_registry import GameRegistry
@@ -30,14 +30,7 @@ class SpellingBeeServer(SpellingBeeGameServicer):
         result, response = game.process_suggestion(
             request.playerIndex, my_suggestion)
         return SuggestionResponse(result=result, message=response)
-
-    def RegisterPlayer(self, request, context):
-        print("in register player")
-        game = self.registry.get_game(request.gameId)
-        player_index = game.game.register_player(request.userName)
-        print(game.game.players)
-        return RegisterResponse(player_index=player_index)
-
+        
     def FinalizeGame(self, request, context):
         print("in finalize")
         game = self.registry.get_game(request.gameId)

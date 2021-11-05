@@ -19,11 +19,6 @@ class SpellingBeeGameStub(object):
                 request_serializer=spelling__bee__game__pb2.GameRequest.SerializeToString,
                 response_deserializer=spelling__bee__game__pb2.GameResponse.FromString,
                 )
-        self.RegisterPlayer = channel.unary_unary(
-                '/app.SpellingBeeGame/RegisterPlayer',
-                request_serializer=spelling__bee__game__pb2.RegisterRequest.SerializeToString,
-                response_deserializer=spelling__bee__game__pb2.RegisterResponse.FromString,
-                )
         self.FinalizeGame = channel.unary_unary(
                 '/app.SpellingBeeGame/FinalizeGame',
                 request_serializer=spelling__bee__game__pb2.FinalizeRequest.SerializeToString,
@@ -34,28 +29,12 @@ class SpellingBeeGameStub(object):
                 request_serializer=spelling__bee__game__pb2.SuggestionRequest.SerializeToString,
                 response_deserializer=spelling__bee__game__pb2.SuggestionResponse.FromString,
                 )
-        self.ListGames = channel.unary_unary(
-                '/app.SpellingBeeGame/ListGames',
-                request_serializer=spelling__bee__game__pb2.ListRequest.SerializeToString,
-                response_deserializer=spelling__bee__game__pb2.ListResponse.FromString,
-                )
-        self.WatchGame = channel.unary_stream(
-                '/app.SpellingBeeGame/WatchGame',
-                request_serializer=spelling__bee__game__pb2.WatchRequest.SerializeToString,
-                response_deserializer=spelling__bee__game__pb2.WatchResponse.FromString,
-                )
 
 
 class SpellingBeeGameServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def CreateGame(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def RegisterPlayer(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -73,18 +52,6 @@ class SpellingBeeGameServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ListGames(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def WatchGame(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_SpellingBeeGameServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -92,11 +59,6 @@ def add_SpellingBeeGameServicer_to_server(servicer, server):
                     servicer.CreateGame,
                     request_deserializer=spelling__bee__game__pb2.GameRequest.FromString,
                     response_serializer=spelling__bee__game__pb2.GameResponse.SerializeToString,
-            ),
-            'RegisterPlayer': grpc.unary_unary_rpc_method_handler(
-                    servicer.RegisterPlayer,
-                    request_deserializer=spelling__bee__game__pb2.RegisterRequest.FromString,
-                    response_serializer=spelling__bee__game__pb2.RegisterResponse.SerializeToString,
             ),
             'FinalizeGame': grpc.unary_unary_rpc_method_handler(
                     servicer.FinalizeGame,
@@ -107,16 +69,6 @@ def add_SpellingBeeGameServicer_to_server(servicer, server):
                     servicer.ProcessSuggestion,
                     request_deserializer=spelling__bee__game__pb2.SuggestionRequest.FromString,
                     response_serializer=spelling__bee__game__pb2.SuggestionResponse.SerializeToString,
-            ),
-            'ListGames': grpc.unary_unary_rpc_method_handler(
-                    servicer.ListGames,
-                    request_deserializer=spelling__bee__game__pb2.ListRequest.FromString,
-                    response_serializer=spelling__bee__game__pb2.ListResponse.SerializeToString,
-            ),
-            'WatchGame': grpc.unary_stream_rpc_method_handler(
-                    servicer.WatchGame,
-                    request_deserializer=spelling__bee__game__pb2.WatchRequest.FromString,
-                    response_serializer=spelling__bee__game__pb2.WatchResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -142,23 +94,6 @@ class SpellingBeeGame(object):
         return grpc.experimental.unary_unary(request, target, '/app.SpellingBeeGame/CreateGame',
             spelling__bee__game__pb2.GameRequest.SerializeToString,
             spelling__bee__game__pb2.GameResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def RegisterPlayer(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/app.SpellingBeeGame/RegisterPlayer',
-            spelling__bee__game__pb2.RegisterRequest.SerializeToString,
-            spelling__bee__game__pb2.RegisterResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -193,39 +128,5 @@ class SpellingBeeGame(object):
         return grpc.experimental.unary_unary(request, target, '/app.SpellingBeeGame/ProcessSuggestion',
             spelling__bee__game__pb2.SuggestionRequest.SerializeToString,
             spelling__bee__game__pb2.SuggestionResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def ListGames(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/app.SpellingBeeGame/ListGames',
-            spelling__bee__game__pb2.ListRequest.SerializeToString,
-            spelling__bee__game__pb2.ListResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def WatchGame(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/app.SpellingBeeGame/WatchGame',
-            spelling__bee__game__pb2.WatchRequest.SerializeToString,
-            spelling__bee__game__pb2.WatchResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

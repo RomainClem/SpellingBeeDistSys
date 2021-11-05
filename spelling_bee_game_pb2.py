@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x17spelling_bee_game.proto\x12\x03\x61pp\"1\n\x0bGameRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08gameType\x18\x02 \x01(\t\"\x1e\n\x0cGameResponse\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\"3\n\x0fRegisterRequest\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\x12\x10\n\x08userName\x18\x02 \x01(\t\"\'\n\x10RegisterResponse\x12\x13\n\x0bplayerIndex\x18\x01 \x01(\x05\"!\n\x0f\x46inalizeRequest\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\"#\n\x10\x46inalizeResponse\x12\x0f\n\x07pangram\x18\x01 \x01(\t\"\x14\n\x04Word\x12\x0c\n\x04word\x18\x01 \x01(\t\"W\n\x11SuggestionRequest\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\x12\x13\n\x0bplayerIndex\x18\x02 \x01(\x05\x12\x1d\n\nsuggestion\x18\x03 \x01(\x0b\x32\t.app.Word\"5\n\x12SuggestionResponse\x12\x0e\n\x06result\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\".\n\x0bListRequest\x12\x0e\n\x06result\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\"/\n\x06Player\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x13\n\x0bplayerIndex\x18\x02 \x01(\x05\"$\n\x04game\x12\x1c\n\x07players\x18\x01 \x03(\x0b\x32\x0b.app.Player\"(\n\x0cListResponse\x12\x18\n\x05games\x18\x01 \x03(\x0b\x32\t.app.game\"\x0e\n\x0cWatchRequest\"T\n\rWatchResponse\x12\x1b\n\x06player\x18\x01 \x01(\x0b\x32\x0b.app.Player\x12\x17\n\x04word\x18\x02 \x03(\x0b\x32\t.app.Word\x12\r\n\x05score\x18\x03 \x01(\x05\x32\xfa\x02\n\x0fSpellingBeeGame\x12\x33\n\nCreateGame\x12\x10.app.GameRequest\x1a\x11.app.GameResponse\"\x00\x12?\n\x0eRegisterPlayer\x12\x14.app.RegisterRequest\x1a\x15.app.RegisterResponse\"\x00\x12=\n\x0c\x46inalizeGame\x12\x14.app.FinalizeRequest\x1a\x15.app.FinalizeResponse\"\x00\x12\x46\n\x11ProcessSuggestion\x12\x16.app.SuggestionRequest\x1a\x17.app.SuggestionResponse\"\x00\x12\x32\n\tListGames\x12\x10.app.ListRequest\x1a\x11.app.ListResponse\"\x00\x12\x36\n\tWatchGame\x12\x11.app.WatchRequest\x1a\x12.app.WatchResponse\"\x00\x30\x01\x62\x06proto3'
+  serialized_pb=b'\n\x17spelling_bee_game.proto\x12\x03\x61pp\"1\n\x0bGameRequest\x12\x10\n\x08userName\x18\x01 \x01(\t\x12\x10\n\x08gameType\x18\x02 \x01(\t\"\x1e\n\x0cGameResponse\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\"!\n\x0f\x46inalizeRequest\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\"#\n\x10\x46inalizeResponse\x12\x0f\n\x07pangram\x18\x01 \x01(\t\"\x14\n\x04Word\x12\x0c\n\x04word\x18\x01 \x01(\t\"W\n\x11SuggestionRequest\x12\x0e\n\x06gameId\x18\x01 \x01(\x0c\x12\x13\n\x0bplayerIndex\x18\x02 \x01(\x05\x12\x1d\n\nsuggestion\x18\x03 \x01(\x0b\x32\t.app.Word\"5\n\x12SuggestionResponse\x12\x0e\n\x06result\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t2\xcd\x01\n\x0fSpellingBeeGame\x12\x33\n\nCreateGame\x12\x10.app.GameRequest\x1a\x11.app.GameResponse\"\x00\x12=\n\x0c\x46inalizeGame\x12\x14.app.FinalizeRequest\x1a\x15.app.FinalizeResponse\"\x00\x12\x46\n\x11ProcessSuggestion\x12\x16.app.SuggestionRequest\x1a\x17.app.SuggestionResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -96,77 +96,6 @@ _GAMERESPONSE = _descriptor.Descriptor(
 )
 
 
-_REGISTERREQUEST = _descriptor.Descriptor(
-  name='RegisterRequest',
-  full_name='app.RegisterRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='gameId', full_name='app.RegisterRequest.gameId', index=0,
-      number=1, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"",
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='userName', full_name='app.RegisterRequest.userName', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=115,
-  serialized_end=166,
-)
-
-
-_REGISTERRESPONSE = _descriptor.Descriptor(
-  name='RegisterResponse',
-  full_name='app.RegisterResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='playerIndex', full_name='app.RegisterResponse.playerIndex', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=168,
-  serialized_end=207,
-)
-
-
 _FINALIZEREQUEST = _descriptor.Descriptor(
   name='FinalizeRequest',
   full_name='app.FinalizeRequest',
@@ -194,8 +123,8 @@ _FINALIZEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=209,
-  serialized_end=242,
+  serialized_start=115,
+  serialized_end=148,
 )
 
 
@@ -226,8 +155,8 @@ _FINALIZERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=244,
-  serialized_end=279,
+  serialized_start=150,
+  serialized_end=185,
 )
 
 
@@ -258,8 +187,8 @@ _WORD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=281,
-  serialized_end=301,
+  serialized_start=187,
+  serialized_end=207,
 )
 
 
@@ -304,8 +233,8 @@ _SUGGESTIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=303,
-  serialized_end=390,
+  serialized_start=209,
+  serialized_end=296,
 )
 
 
@@ -343,243 +272,18 @@ _SUGGESTIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=392,
-  serialized_end=445,
-)
-
-
-_LISTREQUEST = _descriptor.Descriptor(
-  name='ListRequest',
-  full_name='app.ListRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='result', full_name='app.ListRequest.result', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='message', full_name='app.ListRequest.message', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=447,
-  serialized_end=493,
-)
-
-
-_PLAYER = _descriptor.Descriptor(
-  name='Player',
-  full_name='app.Player',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='userName', full_name='app.Player.userName', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='playerIndex', full_name='app.Player.playerIndex', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=495,
-  serialized_end=542,
-)
-
-
-_GAME = _descriptor.Descriptor(
-  name='game',
-  full_name='app.game',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='players', full_name='app.game.players', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=544,
-  serialized_end=580,
-)
-
-
-_LISTRESPONSE = _descriptor.Descriptor(
-  name='ListResponse',
-  full_name='app.ListResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='games', full_name='app.ListResponse.games', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=582,
-  serialized_end=622,
-)
-
-
-_WATCHREQUEST = _descriptor.Descriptor(
-  name='WatchRequest',
-  full_name='app.WatchRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=624,
-  serialized_end=638,
-)
-
-
-_WATCHRESPONSE = _descriptor.Descriptor(
-  name='WatchResponse',
-  full_name='app.WatchResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='player', full_name='app.WatchResponse.player', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='word', full_name='app.WatchResponse.word', index=1,
-      number=2, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='score', full_name='app.WatchResponse.score', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=640,
-  serialized_end=724,
+  serialized_start=298,
+  serialized_end=351,
 )
 
 _SUGGESTIONREQUEST.fields_by_name['suggestion'].message_type = _WORD
-_GAME.fields_by_name['players'].message_type = _PLAYER
-_LISTRESPONSE.fields_by_name['games'].message_type = _GAME
-_WATCHRESPONSE.fields_by_name['player'].message_type = _PLAYER
-_WATCHRESPONSE.fields_by_name['word'].message_type = _WORD
 DESCRIPTOR.message_types_by_name['GameRequest'] = _GAMEREQUEST
 DESCRIPTOR.message_types_by_name['GameResponse'] = _GAMERESPONSE
-DESCRIPTOR.message_types_by_name['RegisterRequest'] = _REGISTERREQUEST
-DESCRIPTOR.message_types_by_name['RegisterResponse'] = _REGISTERRESPONSE
 DESCRIPTOR.message_types_by_name['FinalizeRequest'] = _FINALIZEREQUEST
 DESCRIPTOR.message_types_by_name['FinalizeResponse'] = _FINALIZERESPONSE
 DESCRIPTOR.message_types_by_name['Word'] = _WORD
 DESCRIPTOR.message_types_by_name['SuggestionRequest'] = _SUGGESTIONREQUEST
 DESCRIPTOR.message_types_by_name['SuggestionResponse'] = _SUGGESTIONRESPONSE
-DESCRIPTOR.message_types_by_name['ListRequest'] = _LISTREQUEST
-DESCRIPTOR.message_types_by_name['Player'] = _PLAYER
-DESCRIPTOR.message_types_by_name['game'] = _GAME
-DESCRIPTOR.message_types_by_name['ListResponse'] = _LISTRESPONSE
-DESCRIPTOR.message_types_by_name['WatchRequest'] = _WATCHREQUEST
-DESCRIPTOR.message_types_by_name['WatchResponse'] = _WATCHRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 GameRequest = _reflection.GeneratedProtocolMessageType('GameRequest', (_message.Message,), {
@@ -595,20 +299,6 @@ GameResponse = _reflection.GeneratedProtocolMessageType('GameResponse', (_messag
   # @@protoc_insertion_point(class_scope:app.GameResponse)
   })
 _sym_db.RegisterMessage(GameResponse)
-
-RegisterRequest = _reflection.GeneratedProtocolMessageType('RegisterRequest', (_message.Message,), {
-  'DESCRIPTOR' : _REGISTERREQUEST,
-  '__module__' : 'spelling_bee_game_pb2'
-  # @@protoc_insertion_point(class_scope:app.RegisterRequest)
-  })
-_sym_db.RegisterMessage(RegisterRequest)
-
-RegisterResponse = _reflection.GeneratedProtocolMessageType('RegisterResponse', (_message.Message,), {
-  'DESCRIPTOR' : _REGISTERRESPONSE,
-  '__module__' : 'spelling_bee_game_pb2'
-  # @@protoc_insertion_point(class_scope:app.RegisterResponse)
-  })
-_sym_db.RegisterMessage(RegisterResponse)
 
 FinalizeRequest = _reflection.GeneratedProtocolMessageType('FinalizeRequest', (_message.Message,), {
   'DESCRIPTOR' : _FINALIZEREQUEST,
@@ -645,48 +335,6 @@ SuggestionResponse = _reflection.GeneratedProtocolMessageType('SuggestionRespons
   })
 _sym_db.RegisterMessage(SuggestionResponse)
 
-ListRequest = _reflection.GeneratedProtocolMessageType('ListRequest', (_message.Message,), {
-  'DESCRIPTOR' : _LISTREQUEST,
-  '__module__' : 'spelling_bee_game_pb2'
-  # @@protoc_insertion_point(class_scope:app.ListRequest)
-  })
-_sym_db.RegisterMessage(ListRequest)
-
-Player = _reflection.GeneratedProtocolMessageType('Player', (_message.Message,), {
-  'DESCRIPTOR' : _PLAYER,
-  '__module__' : 'spelling_bee_game_pb2'
-  # @@protoc_insertion_point(class_scope:app.Player)
-  })
-_sym_db.RegisterMessage(Player)
-
-game = _reflection.GeneratedProtocolMessageType('game', (_message.Message,), {
-  'DESCRIPTOR' : _GAME,
-  '__module__' : 'spelling_bee_game_pb2'
-  # @@protoc_insertion_point(class_scope:app.game)
-  })
-_sym_db.RegisterMessage(game)
-
-ListResponse = _reflection.GeneratedProtocolMessageType('ListResponse', (_message.Message,), {
-  'DESCRIPTOR' : _LISTRESPONSE,
-  '__module__' : 'spelling_bee_game_pb2'
-  # @@protoc_insertion_point(class_scope:app.ListResponse)
-  })
-_sym_db.RegisterMessage(ListResponse)
-
-WatchRequest = _reflection.GeneratedProtocolMessageType('WatchRequest', (_message.Message,), {
-  'DESCRIPTOR' : _WATCHREQUEST,
-  '__module__' : 'spelling_bee_game_pb2'
-  # @@protoc_insertion_point(class_scope:app.WatchRequest)
-  })
-_sym_db.RegisterMessage(WatchRequest)
-
-WatchResponse = _reflection.GeneratedProtocolMessageType('WatchResponse', (_message.Message,), {
-  'DESCRIPTOR' : _WATCHRESPONSE,
-  '__module__' : 'spelling_bee_game_pb2'
-  # @@protoc_insertion_point(class_scope:app.WatchResponse)
-  })
-_sym_db.RegisterMessage(WatchResponse)
-
 
 
 _SPELLINGBEEGAME = _descriptor.ServiceDescriptor(
@@ -696,8 +344,8 @@ _SPELLINGBEEGAME = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=727,
-  serialized_end=1105,
+  serialized_start=354,
+  serialized_end=559,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateGame',
@@ -710,19 +358,9 @@ _SPELLINGBEEGAME = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='RegisterPlayer',
-    full_name='app.SpellingBeeGame.RegisterPlayer',
-    index=1,
-    containing_service=None,
-    input_type=_REGISTERREQUEST,
-    output_type=_REGISTERRESPONSE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
     name='FinalizeGame',
     full_name='app.SpellingBeeGame.FinalizeGame',
-    index=2,
+    index=1,
     containing_service=None,
     input_type=_FINALIZEREQUEST,
     output_type=_FINALIZERESPONSE,
@@ -732,30 +370,10 @@ _SPELLINGBEEGAME = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='ProcessSuggestion',
     full_name='app.SpellingBeeGame.ProcessSuggestion',
-    index=3,
+    index=2,
     containing_service=None,
     input_type=_SUGGESTIONREQUEST,
     output_type=_SUGGESTIONRESPONSE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='ListGames',
-    full_name='app.SpellingBeeGame.ListGames',
-    index=4,
-    containing_service=None,
-    input_type=_LISTREQUEST,
-    output_type=_LISTRESPONSE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='WatchGame',
-    full_name='app.SpellingBeeGame.WatchGame',
-    index=5,
-    containing_service=None,
-    input_type=_WATCHREQUEST,
-    output_type=_WATCHRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
