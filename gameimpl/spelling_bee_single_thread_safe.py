@@ -3,8 +3,6 @@ from service.game_service import GameManager
 from datatype.enums import GameStatus
 from dao.spelling_bee_dao_thread_safe import SpellingBeeDao
 from datatype.enums import WordBonus
-STARTING_TOTAL = 0
-
 
 class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
 
@@ -17,7 +15,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         self.words = {}
 
     def post_init(self):
-        self.dao = SpellingBeeDao().get_instance()
+        self.dao = SpellingBeeDao.get_instance()
         self.pangram, self.letter = self.dao.get_pangram()
         self.game.status = GameStatus.IN_PROGRESS
     
@@ -40,7 +38,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
             return False, "Only use letters from the pangram."
 
         if self.letter not in suggestion.word:
-            return False, f"Only must use {self.letter}."
+            return False, f"You must use {self.letter} in your suggestion."
 
         if suggestion.word in self.words:
             return False, "You already made that suggestion."

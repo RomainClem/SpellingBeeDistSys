@@ -4,6 +4,8 @@ import grpc
 import spelling_bee_game_pb2 as spelling_bee_game_pb2
 import spelling_bee_game_pb2_grpc as spelling_bee_game_pb2_grpc
 
+# export PYTHONPATH="/home/emer/Assignments/DistSystPrg/ass1SpellingBee"
+
 
 def run():
     channel = grpc.insecure_channel('127.0.0.1:50055')
@@ -18,7 +20,7 @@ def run():
         word_input = input("suggestion => ")
         my_suggestion = spelling_bee_game_pb2.Word(word=word_input.lower())
         response = stub.ProcessSuggestion(spelling_bee_game_pb2.SuggestionRequest(gameId=game, playerIndex=0, suggestion=my_suggestion))
-        print(response.message)
+        print(f"\n{response.message}")
         if response.result:
             print("Game over")
             break

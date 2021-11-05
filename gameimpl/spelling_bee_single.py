@@ -3,8 +3,6 @@ from service.game_service import GameManager
 from datatype.enums import GameStatus
 from dao.spelling_bee_dao import SpellingBeeDao
 from datatype.enums import WordBonus
-STARTING_TOTAL = 0
-
 
 class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
 
