@@ -24,7 +24,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         unique_chars[unique_chars.index(self.letter)] = f"[{self.letter}]"
         return "".join(unique_chars)
 
-    def validate_suggestion(self, player_index, suggestion):
+    def validate_suggestion(self, suggestion):
         if self.game.status is not GameStatus.IN_PROGRESS:
             return False, "Game is not in progress."
 
@@ -45,7 +45,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
 
         return True, None
 
-    def check_ending_condition(self, player_index, suggestion):
+    def check_ending_condition(self, suggestion):
         """returns True when it's the last suggestion or False if it keeps going
         :param player_index: position of player
         :param suggestion: the word with it's score
@@ -71,10 +71,10 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         self.game.suggestions[player_index].append(suggestion)
 
         if result is True:
-            self.game.winning_word = suggestion.word
+            self.winning_suggestions = player_index
             self.game.winning_player_index = player_index
 
-    def format_summary(self, player_index, suggestion):
+    def format_summary(self, suggestion):
         return f"Last word was {suggestion.word} with a score of {suggestion.get_score()} points." \
             f"\nYou can suggest {30 - len(self.words)} additional words." \
             f"\nTotal score = {self.score}, found words {list(self.words)}."

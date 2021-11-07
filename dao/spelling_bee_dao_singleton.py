@@ -22,10 +22,10 @@ class SpellingBeeDao:
         super().__init__()
         self.lock = threading.Lock()
         self.wordDictionnary = {}
-        with open('../assets/words_dictionary.json') as f:
+        with open('./assets/words_dictionary.json') as f:
             self.wordDictionnary = json.load(f)
         self.pangramsDictionnary = {}
-        with open('../assets/pangrams.json') as f:
+        with open('./assets/pangrams.json') as f:
             self.pangramsDictionnary = json.load(f)
 
     def get_pangram(self):

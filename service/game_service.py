@@ -31,18 +31,18 @@ class GameSuggestionTemplate(ABC):
         and defers some steps to subclasses.
         """
 
-        status, message = self.validate_suggestion(player_index, suggestion)
+        status, message = self.validate_suggestion(suggestion)
         if status is False:
             return False, message
 
         # result stores if the game is over
-        result = self.check_ending_condition(player_index, suggestion)
+        result = self.check_ending_condition(suggestion)
 
         self.record_statistics(player_index, suggestion, result)
 
         # Note: this violates the separation of concerns principle (we are mixing presentation logic in
         # with service / business logic - we should refactor, especially if we move to a GUI front-end
-        return result, self.format_summary(player_index, suggestion)
+        return result, self.format_summary(suggestion)
 
     def retrieve_pangram(self):
         return self.get_pangram()
@@ -53,12 +53,12 @@ class GameSuggestionTemplate(ABC):
         pass
     
     @abstractmethod
-    def validate_suggestion(self, player_index, suggestion):
+    def validate_suggestion(self, suggestion):
         """Primitive operation. You HAVE TO override me, I'm a placeholder."""
         pass
 
     @abstractmethod
-    def check_ending_condition(self, player_index, suggestion):
+    def check_ending_condition(self, suggestion):
         """Primitive operation. You HAVE TO override me, I'm a placeholder."""
         pass
 
@@ -68,7 +68,7 @@ class GameSuggestionTemplate(ABC):
         pass
 
     @abstractmethod
-    def format_summary(self, player_index, suggestion):
+    def format_summary(self, suggestion):
         """Primitive operation. You HAVE TO override me, I'm a placeholder."""
         pass
 

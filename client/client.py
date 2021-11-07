@@ -22,7 +22,7 @@ def run():
         response = stub.ProcessSuggestion(spelling_bee_game_pb2.SuggestionRequest(gameId=game, playerIndex=0, suggestion=my_suggestion))
         print(f"\n{response.message}")
         if response.result:
-            print("Game over")
+            print("\nGame over")
             break
 
         

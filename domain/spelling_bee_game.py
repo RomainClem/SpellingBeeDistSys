@@ -5,7 +5,7 @@ class SpellingBeeGame:
         self.players = []
         self.last_player_index = -1
         self.suggestions = []
-        self.winning_word = -1
+        self.winning_suggestions = -1
         self.winning_player_index = -1
 
     def register_player(self, username):
@@ -19,4 +19,8 @@ class SpellingBeeGame:
             return -1
 
 
-# Remove unnecessary information here. Either store something or do a minimum.
+"""
+This is designed to accomodate multiple player for a single game. 
+This could be updated and simplified for a single player Spelling Bee.
+I will keep it as is for now, as I'd like to have the same class for multi player or single player Spelling Bee.
+"""
