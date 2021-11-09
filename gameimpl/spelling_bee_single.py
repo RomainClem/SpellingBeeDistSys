@@ -58,7 +58,6 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
 
     def record_statistics(self, player_index, suggestion, result):
         """Records the statistics on the suggestion 
-
         Args:
             player_index ([int]): position of player
             suggestion ([object]): suggestion made by the player
@@ -81,8 +80,14 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         return bonus > 0
 
     def format_summary(self, suggestion, player_index, pangram):
-
-        return f"\"{suggestion.word}\" Score: {suggestion.get_score()}" \
+        score = suggestion.get_score()
+        bonusWord = ""
+        
+        if pangram:
+            score += WordBonus.PANGRAM
+            bonusWord = "Pangram! "
+            
+        return f"{bonusWord}\"{suggestion.word}\" Score: {score}" \
             f"\nRemaining suggestions: {30 - len(self.game.words[player_index])}" \
             f"\nTotal score => {self.game.scores[player_index]}, found words: {list(self.game.words[player_index])}."
 

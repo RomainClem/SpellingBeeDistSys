@@ -38,6 +38,7 @@ class GameSuggestionTemplate(ABC):
         # result stores if the game is over
         result = self.check_ending_condition(suggestion, player_index)
 
+        # Here return if the word is a pangram. This could be updated to return a 'bonus' enum and allow more scaling
         pangram = self.record_statistics(player_index, suggestion, result)
 
         # Note: this violates the separation of concerns principle (we are mixing presentation logic in

@@ -26,5 +26,5 @@ class SpellingBeeGame:
 """
 This is designed to accomodate multiple player for a single game. 
 This could be updated and simplified for a single player Spelling Bee.
-I will keep it as is for now, as I'd like to have the same class for multi player or single player Spelling Bee.
+I will keep it as is for now, as I'd like to use the same or very similar logic for multi player and single player Spelling Bee.
 """

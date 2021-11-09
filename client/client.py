@@ -16,7 +16,7 @@ def run():
     print(f"Welcome {name}, let's have a game of single player spelling bee!\n" \
             f"You can guess up to 30 words. Have a good game :)")
     while True:
-        print(pangram)
+        print('\n'+pangram)
         word_input = input("suggestion => ")
         my_suggestion = spelling_bee_game_pb2.Word(word=word_input.lower())
         response = stub.ProcessSuggestion(spelling_bee_game_pb2.SuggestionRequest(gameId=game, playerIndex=0, suggestion=my_suggestion))
