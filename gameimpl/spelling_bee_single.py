@@ -10,9 +10,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         super().__init__()
         self.pangram = ""
         self.letter = ""
-        self.score = 0
         self.dao = None
-        self.words = {}
 
     def post_init(self):
         self.dao = SpellingBeeDao.get_instance()
@@ -24,7 +22,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         unique_chars[unique_chars.index(self.letter)] = f"[{self.letter}]"
         return "".join(unique_chars)
 
-    def validate_suggestion(self, suggestion):
+    def validate_suggestion(self, suggestion, player_index):
         if self.game.status is not GameStatus.IN_PROGRESS:
             return False, "Game is not in progress."
 
@@ -40,44 +38,53 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         if self.letter not in suggestion.word:
             return False, f"You must use {self.letter} in your suggestion."
 
-        if suggestion.word in self.words:
+        if suggestion.word in self.game.words[player_index]:
             return False, "You already made that suggestion."
 
         return True, None
 
-    def check_ending_condition(self, suggestion):
+    def check_ending_condition(self, suggestion, player_index):
         """returns True when it's the last suggestion or False if it keeps going
         :param player_index: position of player
         :param suggestion: the word with it's score
         :return: True or False
         """
-        bonus = 0
-        if len(suggestion.word) > 6:
-            if (len(set(suggestion.word).difference(set(self.pangram))) == 0):
-                bonus = WordBonus.PANGRAM 
-
-        self.score += suggestion.get_score() + bonus
-
-        self.words[suggestion.word] = ""
-        print(f"Found word: {self.words.keys()}\nTotal score: {self.score}")
-
-        if len(self.words) == 30:
+        self.game.suggestions[player_index].append(suggestion)
+        if len(self.game.words[player_index]) == 30:
             self.game.status = GameStatus.FINISHED
             return True
 
         return False
 
     def record_statistics(self, player_index, suggestion, result):
-        self.game.suggestions[player_index].append(suggestion)
+        """Records the statistics on the suggestion 
+
+        Args:
+            player_index ([int]): position of player
+            suggestion ([object]): suggestion made by the player
+            result ([bool]): result from ending condition (True - game over / False - Game continue)
+        """        
+        bonus = 0
+        if len(suggestion.word) > 6:
+            if (len(set(suggestion.word).difference(set(self.pangram))) == 0):
+                bonus = WordBonus.PANGRAM 
+
+        self.game.scores[player_index] += suggestion.get_score() + bonus
+
+        self.game.words[player_index][suggestion.word] = ""
+        print(f"Found word: {self.game.words[player_index].keys()}\nTotal score: {self.game.scores[player_index]}")
 
         if result is True:
             self.winning_suggestions = player_index
             self.game.winning_player_index = player_index
 
-    def format_summary(self, suggestion):
-        return f"Last word was {suggestion.word} with a score of {suggestion.get_score()} points." \
-            f"\nYou can suggest {30 - len(self.words)} additional words." \
-            f"\nTotal score = {self.score}, found words {list(self.words)}."
+        return bonus > 0
+
+    def format_summary(self, suggestion, player_index, pangram):
+
+        return f"\"{suggestion.word}\" Score: {suggestion.get_score()}" \
+            f"\nRemaining suggestions: {30 - len(self.game.words[player_index])}" \
+            f"\nTotal score => {self.game.scores[player_index]}, found words: {list(self.game.words[player_index])}."
 
 
 class SpellingBeeGameBuilder:

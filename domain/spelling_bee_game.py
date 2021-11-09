@@ -5,6 +5,8 @@ class SpellingBeeGame:
         self.players = []
         self.last_player_index = -1
         self.suggestions = []
+        self.words = []
+        self.scores = []
         self.winning_suggestions = -1
         self.winning_player_index = -1
 
@@ -14,6 +16,8 @@ class SpellingBeeGame:
             index = len(self.players)
             self.players.append(username)
             self.suggestions.append([])
+            self.words.append({})
+            self.scores.append(0)
             return index
         else:
             return -1

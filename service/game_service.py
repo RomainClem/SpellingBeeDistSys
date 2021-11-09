@@ -24,25 +24,25 @@ class GameManager(ABC):
 class GameSuggestionTemplate(ABC):
 
     def process_suggestion(self, player_index, suggestion):
-        """returns result (0 meaning game goes on, >0 meaning more than 30 guess has been done), response (info messages)
+        """returns result (True meaning game goes on, False meaning more than 30 guess has been done), response (info messages)
         Skeleton of operations to perform. DON'T override me.
 
         The Template Method defines a skeleton of an algorithm in an operation,
         and defers some steps to subclasses.
         """
 
-        status, message = self.validate_suggestion(suggestion)
+        status, message = self.validate_suggestion(suggestion, player_index)
         if status is False:
             return False, message
 
         # result stores if the game is over
-        result = self.check_ending_condition(suggestion)
+        result = self.check_ending_condition(suggestion, player_index)
 
-        self.record_statistics(player_index, suggestion, result)
+        pangram = self.record_statistics(player_index, suggestion, result)
 
         # Note: this violates the separation of concerns principle (we are mixing presentation logic in
         # with service / business logic - we should refactor, especially if we move to a GUI front-end
-        return result, self.format_summary(suggestion)
+        return result, self.format_summary(suggestion, player_index, pangram)
 
     def retrieve_pangram(self):
         return self.get_pangram()
@@ -53,12 +53,12 @@ class GameSuggestionTemplate(ABC):
         pass
     
     @abstractmethod
-    def validate_suggestion(self, suggestion):
+    def validate_suggestion(self, suggestion, player_index):
         """Primitive operation. You HAVE TO override me, I'm a placeholder."""
         pass
 
     @abstractmethod
-    def check_ending_condition(self, suggestion):
+    def check_ending_condition(self, suggestion,player_index):
         """Primitive operation. You HAVE TO override me, I'm a placeholder."""
         pass
 
@@ -68,7 +68,7 @@ class GameSuggestionTemplate(ABC):
         pass
 
     @abstractmethod
-    def format_summary(self, suggestion):
+    def format_summary(self, suggestion, player_index, pangram):
         """Primitive operation. You HAVE TO override me, I'm a placeholder."""
         pass
 
