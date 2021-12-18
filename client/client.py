@@ -6,7 +6,7 @@ import spelling_bee_game_pb2_grpc as spelling_bee_game_pb2_grpc
 
 # export PYTHONPATH="/home/emer/Assignments/DistSystPrg/ass1SpellingBee"
 
-
+# Small test
 def run():
     channel = grpc.insecure_channel('127.0.0.1:50055')
     stub = spelling_bee_game_pb2_grpc.SpellingBeeGameStub(channel)
