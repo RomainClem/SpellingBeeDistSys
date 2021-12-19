@@ -54,7 +54,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         :return: True or False
         """
         self.game.suggestions[player_index].append(suggestion)
-        if len(self.game.words[player_index]) == 30:
+        if len(self.game.words[player_index]) == 5:
             self.game.status = GameStatus.FINISHED
             self.winning_suggestions = player_index
             self.game.winning_player_index = player_index

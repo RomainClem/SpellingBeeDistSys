@@ -5,7 +5,7 @@ from google.protobuf import message
 
 import grpc
 
-import gameimpl.spelling_bee_single as spelling_bee_single
+import app.gameimpl.spelling_bee_single as spelling_bee_single
 from spelling_bee_game_pb2 import GameResponse, FinalizeResponse, SuggestionResponse, Word, RegisterResponse, StatusResponse
 from spelling_bee_game_pb2_grpc import SpellingBeeGameServicer, add_SpellingBeeGameServicer_to_server
 from game_registry import GameRegistry
