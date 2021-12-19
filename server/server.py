@@ -36,6 +36,7 @@ class SpellingBeeServer(SpellingBeeGameServicer):
         print("in register player")
         game = self.registry.get_game(request.gameId)
         playerIndex = -1 if game == -1 else game.game.register_player(request.userName)
+        if playerIndex == -1: print("Incorrect game id by user.")
         return RegisterResponse(playerIndex=playerIndex)
     
     def GameStatus(self, request, context):

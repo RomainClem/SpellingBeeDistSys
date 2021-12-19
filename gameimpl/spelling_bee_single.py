@@ -24,7 +24,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         return "".join(unique_chars)
 
     def check_game_status(self):
-        return self.game.status == GameStatus.FINISHED
+        return self.game.status == GameStatus.FINISHED, self.game.players[self.game.winning_player_index]
     
     def validate_suggestion(self, suggestion, player_index):
         if self.game.status is not GameStatus.IN_PROGRESS:
@@ -62,7 +62,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
 
         return False
 
-    def record_statistics(self, player_index, suggestion, result):
+    def record_statistics(self, player_index, suggestion):
         """Records the statistics on the suggestion 
         Args:
             player_index ([int]): position of player
@@ -77,7 +77,7 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         self.game.scores[player_index] += suggestion.get_score() + bonus
 
         self.game.words[player_index][suggestion.word] = ""
-        print(f"Found word: {self.game.words[player_index].keys()}\nTotal score: {self.game.scores[player_index]}")
+        print(f"Player {player_index}:\nFound word: {self.game.words[player_index].keys()}\nTotal score: {self.game.scores[player_index]}")
 
         return bonus > 0
 

@@ -59,7 +59,7 @@ def startGame(stub, name, playerIndex, pangram, game):
         response = stub.ProcessSuggestion(spelling_bee_game_pb2.SuggestionRequest(gameId=game, playerIndex=playerIndex, suggestion=my_suggestion))
         print(f"\n{response.message}")
         if response.result:
-            print("\nGame over")
+            print("\nGame over!")
             break
     
  

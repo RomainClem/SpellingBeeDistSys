@@ -12,13 +12,13 @@ class SpellingBeeGame:
         self.winning_player_index = -1
 
     def register_player(self, username):
-        print(self.players)
         if username not in self.players:
             index = len(self.players)
             self.players.append(username)
             self.suggestions.append([])
             self.words.append({})
             self.scores.append(0)
+            print(f"Current players: {self.players}")
             return index
         else:
             return -1

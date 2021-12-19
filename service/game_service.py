@@ -31,8 +31,9 @@ class GameSuggestionTemplate(ABC):
         and defers some steps to subclasses.
         """
 
-        if self.check_game_status():
-            return True, "Game Over!"
+        status, player = self.check_game_status()
+        if status:
+            return True, f"{player} finished the game!"
         
         result, message = self.validate_suggestion(suggestion, player_index)
         
@@ -68,7 +69,7 @@ class GameSuggestionTemplate(ABC):
         pass
 
     @abstractmethod
-    def record_statistics(self, player_index, suggestion, result):
+    def record_statistics(self, player_index, suggestion):
         """Primitive operation. You HAVE TO override me, I'm a placeholder."""
         pass
 

@@ -1,6 +1,7 @@
 import socket
 import threading
 
+# Consume data from Rabbit mq
 
 class ClientThread(threading.Thread):
 
@@ -26,6 +27,9 @@ class ClientThread(threading.Thread):
             self.c_socket.send(bytes(msg, 'UTF-8'))
         print("Client at ", clientAddress, " disconnected...")
 
+
+
+# Server
 
 LOCALHOST = "127.0.0.1"
 PORT = 64001
