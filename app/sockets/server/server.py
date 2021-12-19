@@ -1,6 +1,8 @@
 import socket
 import threading
-
+from time import sleep
+import pika
+import json
 # Consume data from Rabbit mq
 
 class ClientThread(threading.Thread):
@@ -12,19 +14,25 @@ class ClientThread(threading.Thread):
         print("New connection added: ", client_address)
     
     
-    def callback():
-        # El yonko from rabbitmq
-        ...
+    def callback(self, channel, method, properties, body):
+        print("From game server")
+        print(f" [x] Received -> {json.loads(body)}")
+        self.c_socket.send(bytes(json.loads(body), 'UTF-8'))
+        
     
     def run(self):
         print("Connection from : ", clientAddress)
         while True:
-            data = self.c_socket.recv(2048)
-            msg = data.decode()
-            if msg == 'bye':
-                break
-            print("from client", msg)
-            self.c_socket.send(bytes(msg, 'UTF-8'))
+            connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+            # connection = pika.BlockingConnection(pika.ConnectionParameters('server'))
+            channel = connection.channel()
+            channel.queue_declare(queue='player-stats')
+            channel.basic_consume(queue='player-stats',
+                                auto_ack=True,
+                                on_message_callback=self.callback)
+
+            print(' [*] Waiting for messages. To exit press CTRL+C')
+            channel.start_consuming() 
         print("Client at ", clientAddress, " disconnected...")
 
 
@@ -32,6 +40,7 @@ class ClientThread(threading.Thread):
 # Server
 
 LOCALHOST = "127.0.0.1"
+# LOCALHOST = "0.0.0.0" # Used for Docker
 PORT = 64001
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

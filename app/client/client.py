@@ -1,10 +1,6 @@
 import logging
-from os import times
-from random import choice
-from types import resolve_bases
 import grpc
 import tools
-import codecs
 import time
 import spelling_bee_game_pb2 as spelling_bee_game_pb2
 import spelling_bee_game_pb2_grpc as spelling_bee_game_pb2_grpc
@@ -19,7 +15,7 @@ def onStart():
     
     
 def createGame(stub, name):
-    response = stub.CreateGame(spelling_bee_game_pb2.GameRequest(userName=name, gameType="Spelling Bee Single player"))
+    response = stub.CreateGame(spelling_bee_game_pb2.GameRequest(userName=name, gameType="Spelling Bee Multi player"))
     print(f"Game created with id: {response.gameId}")
     while True:
         print("Waiting for players to join the lobby.")
@@ -59,11 +55,10 @@ def startGame(stub, name, playerIndex, pangram, game):
         response = stub.ProcessSuggestion(spelling_bee_game_pb2.SuggestionRequest(gameId=game, playerIndex=playerIndex, suggestion=my_suggestion))
         print(f"\n{response.message}")
         if response.result:
-            print("\nGame over!")
+            print(f"\nGame over {name}!")
             break
     
- 
-# Small test
+
 def run():
     channel = grpc.insecure_channel('127.0.0.1:50055')
     stub = spelling_bee_game_pb2_grpc.SpellingBeeGameStub(channel)

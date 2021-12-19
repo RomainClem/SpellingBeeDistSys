@@ -2,11 +2,6 @@ syntax = "proto3";
 // python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. ./protos/spelling_bee_game.proto
 package app;
 
-// service to Add
-// game check status
-// start game
-// get player words
-
 service SpellingBeeGame{
     rpc CreateGame(GameRequest) returns (GameResponse) {}
     rpc RegisterPlayer(RegisterRequest) returns (RegisterResponse) {}

@@ -2,10 +2,10 @@ import logging
 import time
 from concurrent import futures
 from google.protobuf import message
-
+import pika
 import grpc
-
-import app.gameimpl.spelling_bee_single as spelling_bee_single
+import json
+import app.gameimpl.spelling_bee as spelling_bee
 from spelling_bee_game_pb2 import GameResponse, FinalizeResponse, SuggestionResponse, Word, RegisterResponse, StatusResponse
 from spelling_bee_game_pb2_grpc import SpellingBeeGameServicer, add_SpellingBeeGameServicer_to_server
 from game_registry import GameRegistry
@@ -16,10 +16,10 @@ from datatype.enums import GameStatus
 class SpellingBeeServer(SpellingBeeGameServicer):
 
     def __init__(self):
-        self.game_type = "Spelling Bee Single player"
+        self.game_type = "Spelling Bee Multi player"
         self.factory = object_factory.ObjectFactory()
         self.factory.register_builder(
-            "Spelling Bee Single player", spelling_bee_single.SpellingBeeGameBuilder())
+            "Spelling Bee Multi player", spelling_bee.SpellingBeeGameBuilder())
         self.registry = GameRegistry.get_instance()
 
     def CreateGame(self, request, context):
@@ -57,8 +57,22 @@ class SpellingBeeServer(SpellingBeeGameServicer):
         print("In 'visit' for: " + str(request.gameId))
         my_suggestion = suggestion.Suggestion(request.suggestion)
         game = self.registry.get_game(request.gameId)
+        
         result, response = game.process_suggestion(
             request.playerIndex, my_suggestion)
+        
+        message = ""
+        for n in range(0, len(game.game.players)):
+            message += f"\n{game.game.players[n]} stats:\n"\
+                f"- Words = {game.game.words[n].keys()}\n"\
+                f"- Score = {game.game.scores[n]}\n"    
+       
+        connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+        channel = connection.channel()
+        channel.queue_declare(queue='player-stats')
+        channel.basic_publish(exchange='',routing_key='player-stats',body=json.dumps(message))
+        connection.close()
+        
         return SuggestionResponse(result=result, message=response)
         
 def serve():
@@ -66,6 +80,7 @@ def serve():
     add_SpellingBeeGameServicer_to_server(SpellingBeeServer(), server)
     server.add_insecure_port('[::]:50055')
     server.start()
+    print("Server running!\nWaiting for client...")
     server.wait_for_termination()
 
 
