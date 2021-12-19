@@ -31,15 +31,19 @@ class GameSuggestionTemplate(ABC):
         and defers some steps to subclasses.
         """
 
-        status, message = self.validate_suggestion(suggestion, player_index)
-        if status is False:
+        if self.check_game_status():
+            return True, "Game Over!"
+        
+        result, message = self.validate_suggestion(suggestion, player_index)
+        
+        if result is False:
             return False, message
+        
+        # Here return if the word is a pangram. This could be updated to return a 'bonus' enum and allow more scaling
+        pangram = self.record_statistics(player_index, suggestion)
 
         # result stores if the game is over
         result = self.check_ending_condition(suggestion, player_index)
-
-        # Here return if the word is a pangram. This could be updated to return a 'bonus' enum and allow more scaling
-        pangram = self.record_statistics(player_index, suggestion, result)
 
         # Note: this violates the separation of concerns principle (we are mixing presentation logic in
         # with service / business logic - we should refactor, especially if we move to a GUI front-end
@@ -73,3 +77,7 @@ class GameSuggestionTemplate(ABC):
         """Primitive operation. You HAVE TO override me, I'm a placeholder."""
         pass
 
+    @abstractmethod
+    def check_game_status(self):
+        """Primitive operation. You HAVE TO override me, I'm a placeholder."""
+        pass

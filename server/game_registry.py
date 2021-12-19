@@ -28,11 +28,13 @@ class GameRegistry:
 
     def add_game(self, game):
         self.lock.acquire()
-        game_id = uuid.uuid4() # Generating unique ID
+        game_id = str(uuid.uuid4())[:8] # Generating unique ID, shorter only getting the first 8 characters
         self.games[game_id] = game
         self.lock.release()
         return game_id
 
     def get_game(self, game_id):
-        return self.games[uuid.UUID(bytes=game_id)]
-    
+        if (game_id in self.games):
+            return self.games[game_id]
+        else:
+            return -1 

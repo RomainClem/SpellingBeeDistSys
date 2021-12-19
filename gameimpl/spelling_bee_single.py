@@ -18,10 +18,14 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         self.game.status = GameStatus.IN_PROGRESS
     
     def get_pangram(self):
+        if self.pangram == "": return "" # Security if pangram hasn't been set yet
         unique_chars = list(set(self.pangram))
         unique_chars[unique_chars.index(self.letter)] = f"[{self.letter}]"
         return "".join(unique_chars)
 
+    def check_game_status(self):
+        return self.game.status == GameStatus.FINISHED
+    
     def validate_suggestion(self, suggestion, player_index):
         if self.game.status is not GameStatus.IN_PROGRESS:
             return False, "Game is not in progress."
@@ -52,6 +56,8 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
         self.game.suggestions[player_index].append(suggestion)
         if len(self.game.words[player_index]) == 30:
             self.game.status = GameStatus.FINISHED
+            self.winning_suggestions = player_index
+            self.game.winning_player_index = player_index
             return True
 
         return False
@@ -72,10 +78,6 @@ class SpellingBeeGameSingle(GameManager, GameSuggestionTemplate):
 
         self.game.words[player_index][suggestion.word] = ""
         print(f"Found word: {self.game.words[player_index].keys()}\nTotal score: {self.game.scores[player_index]}")
-
-        if result is True:
-            self.winning_suggestions = player_index
-            self.game.winning_player_index = player_index
 
         return bonus > 0
 

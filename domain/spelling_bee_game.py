@@ -2,6 +2,7 @@ class SpellingBeeGame:
 
     def __init__(self):
         self.active = True
+        self.status = None
         self.players = []
         self.last_player_index = -1
         self.suggestions = []

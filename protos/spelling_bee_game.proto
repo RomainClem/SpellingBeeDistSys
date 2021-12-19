@@ -2,12 +2,18 @@ syntax = "proto3";
 // python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. ./protos/spelling_bee_game.proto
 package app;
 
+// service to Add
+// game check status
+// start game
+// get player words
+
 service SpellingBeeGame{
     rpc CreateGame(GameRequest) returns (GameResponse) {}
-    rpc FinalizeGame (FinalizeRequest) returns (FinalizeResponse) {}
-    rpc ProcessSuggestion (SuggestionRequest) returns (SuggestionResponse) {}
+    rpc RegisterPlayer(RegisterRequest) returns (RegisterResponse) {}
+    rpc FinalizeGame(FinalizeRequest) returns (FinalizeResponse) {}
+    rpc ProcessSuggestion(SuggestionRequest) returns (SuggestionResponse) {}
+    rpc GameStatus(StatusRequest) returns (StatusResponse) {}
 }
-
 
 message GameRequest {
     string userName = 1;
@@ -15,23 +21,31 @@ message GameRequest {
 }
 
 message GameResponse {
-    bytes gameId = 1;
+    string gameId = 1;
+    int32 playerIndex = 2;
 }
 
+message RegisterRequest {
+    string gameId = 1;
+    string userName = 2;
+}
+
+message RegisterResponse {
+    int32 playerIndex = 1;
+}
+  
 message FinalizeRequest {
-    bytes gameId = 1;
+    string gameId = 1;
 }
 
-message FinalizeResponse {
-    string pangram = 1;
-}
+message FinalizeResponse {}
 
 message Word {
     string word = 1;
 }
 
 message SuggestionRequest {
-    bytes gameId = 1;
+    string gameId = 1;
     int32 playerIndex = 2;
     Word suggestion = 3;
 }
@@ -39,4 +53,14 @@ message SuggestionRequest {
 message SuggestionResponse {
     bool result = 1;
     string message = 2;
+}
+
+message StatusRequest {
+    string gameId = 1;
+}
+
+message StatusResponse {
+    int32 playerCount = 1;
+    string pangram = 2;
+    bool status = 3;  
 }
