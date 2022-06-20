@@ -1,4 +1,4 @@
-# Distributed system programming Assignment 1, spelling bee.
+# Distributed system programming Spelling bee.
 #### Author: Romain Clemencon, R00193006
 
 ## Use of Patterns
